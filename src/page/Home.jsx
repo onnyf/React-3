@@ -50,7 +50,7 @@ const Home = () => {
           </tbody>
         </table>
         </div>  
-        <select name="" id=""></select>
+       
     </div>
     
     </>
