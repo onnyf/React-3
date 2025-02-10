@@ -1,8 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { addToCart } from '../redux/slices/CartSlices';
+import { useDispatch } from 'react-redux';
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   return (
     <div className="bg-white shadow-lg rounded-2xl  gap-5 p-4 w-full sm:w-64 md:w-72 lg:w-80 transition-transform transform hover:scale-105">
@@ -23,6 +27,9 @@ const ProductCard = ({ product }) => {
       >
         View Details
       </button>
+      <div className='flex border h-8 w-28 mt-4 relative left-20 justify-center rounded-lg bg-gray-500 text-white hover:bg-blue-600'>
+        <button onClick={()=> dispatch(addToCart(product))} className='items-center justify-between flex'>Add to cart</button>
+      </div>
     </div>
   );
 };

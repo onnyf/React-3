@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 
-
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
- 
+
   useEffect(() => {
     const fetchSingleProduct = async () => {
       try {
@@ -31,13 +30,15 @@ const ProductDetail = () => {
   if (loading) return <p>Loading product details...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>Product not found</p>;
-     const FLUTTER_PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY
+
+
+  const FLUTTER_PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY
 
   const config = {
     public_key: FLUTTER_PUBLIC_KEY,
     tx_ref: Date.now(),
     amount: product.price,
-    currency: "USD",
+    currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {
       email: "user@gmail.com",
