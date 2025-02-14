@@ -1,49 +1,49 @@
-
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
-import { GoQuestion } from "react-icons/go";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import { useSelector } from 'react-redux';
-
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import CartDrop from "./CartDrop";
 
 
 const Navbar = () => {
+  const cartCount = useSelector((state) => state.cart.cartCount);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const cart= useSelector ((state)=>state.cart.cartCount);
-  console.log(cart);
-
-  const cartItem= useSelector ((state)=>state.cart.cartItem);
-  console.log(cartItem);
-  
+ 
 
   return (
-    <div className=' flex px-10 items-center space-x-[1150px] bg-slate-800 h-24 text-white'>
-        <Link to={'/'}>
-       <div className='h-40 w-40'>
-       <img src="public/F_Logo.png" alt="" className='flex text-2xl'/>
-       </div>
+    <>
+      <div className="flex px-8 items-center justify-between bg-slate-800 h-24 text-white">
+        <Link to={"/"}>
+          <div className="h-40 w-40">
+            <img src="/F_Logo.png" alt="Logo" className="flex text-2xl" />
+          </div>
         </Link>
 
-        <div className=' flex gap-20'>
-       
         
-        <div className='flex gap-2'>
-        <GoQuestion className=' text-2xl' />
-          <h4>Help</h4>
-          <RiArrowDropDownLine />
-         
-        </div>
-        <div className='relative flex items-center'>
-          <TiShoppingCart className='h-5 w-5' />
-          <div className='absolute bottom-4 -right-6 flex items-center justify-center bg-red-500 text-white text-xs font-bold rounded-full min-w-[20px] h-5 px-2'>
-            {cart}
-          </div>
-        </div>
-       <button className=''>User</button>
-        </div>
-    </div>
-    
-  )
-}
 
-export default Navbar
+        <div className="flex gap-10">
+          <div className="flex gap-2"></div>
+
+          <div className="absolute flex items-center">
+            <button
+              onClick={() => setDropdownOpen((previous) => !previous)}
+              className="absolute"
+            >
+              <TiShoppingCart className="h-6 w-6 mt-6 flex" />
+              <div className="absolute top-2 -right-6 flex items-center justify-center bg-red-500 text-white text-xs font-bold rounded-full min-w-[20px] h-5 px-2">
+                {cartCount}
+              </div>
+            </button>
+            {dropdownOpen && <CartDrop closeDropDown={closeDropDown} />}
+          </div>
+
+          <button className="">User</button>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Navbar;
