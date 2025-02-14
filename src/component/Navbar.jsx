@@ -8,7 +8,10 @@ import CartDrop from "./CartDrop";
 const Navbar = () => {
   const cartCount = useSelector((state) => state.cart.cartCount);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  
+  const closeDropDown = () => {
+    setDropdownOpen(false)
+  }
 
  
 
