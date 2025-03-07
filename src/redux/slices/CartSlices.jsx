@@ -10,7 +10,7 @@ const cartSlice = createSlice({
     },
 
     removeFromCart: (state, action) => {
-      // console.log("Reducer received ID:", action.payload);
+      
       const itemIndex = state.cartItem.findIndex(
         (item) => item.id === action.payload
       );

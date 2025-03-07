@@ -6,7 +6,7 @@ import { CiSearch } from "react-icons/ci";
 const Product = () => {
   const [product, setProduct] = useState([]);
   const [filterProduct, setFilterProduct] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(""); 
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   const filterByPrice = (price) => {
@@ -29,39 +29,32 @@ const Product = () => {
     fetchProduct();
   }, []);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log("Search Query:", searchQuery);
+  const searchProduct = product.filter((p)=>p.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
-    const filteredProducts = filterProduct.filter((p) =>
-      p.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setProduct(filteredProducts);
-  };
+  
 
   return (
     <div className="mt-12">
-      <form onSubmit={handleSearch} className="flex items-center">
-        <div className="relative rounded-lg border">
-          <input
-            type="text"
-            placeholder="Search products"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-4 py-2 rounded-l-lg text-black focus:outline-none "
-          />
-          <CiSearch className="absolute right-2 top-2.5 text-2xl text-gray-500 pointer-events-none" />
-        </div>
-        <button
-          type="submit"
-          className="px-4 py-2 gap-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none ml-4"
-        >
-          Search
-        </button>
-      </form>
+      <div className="relative rounded-lg border flex items-center w-80">
+        <input
+          type="text"
+          placeholder="Search products"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="px-4 py-2 rounded-l-lg text-black focus:outline-none "
+        />
+        <CiSearch className="absolute right-2 top-2.5 text-2xl text-gray-500 pointer-events-none" />
+      </div>
+      <button
+        type="submit"
+        className="px-4 py-2 gap-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 
+         relative left-84 bottom-10 focus:outline-none ml-"
+      >
+        Search
+      </button>
 
       <select
-        className="relative left-[1000px] bottom-24 h-6 w-50 border rounded-3xl"
+        className="relative left-[900px] bottom-18 h-6 w-50 border rounded-3xl"
         onChange={(e) => {
           filterByPrice(e.target.value);
         }}
@@ -79,7 +72,7 @@ const Product = () => {
       </h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {product.map((p, index) => {
+        {searchProduct.map((p, index) => {
           console.log(p);
           return <ProductCard key={index} product={p} />;
         })}

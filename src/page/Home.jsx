@@ -4,8 +4,9 @@ const Home = () => {
       <div className="mt-12">
         <div className="flex justify-items-center gap-10 px-18">
           <div className="h-56 w-10 bg-gray-200 px-40 py-12 shadow rounded-lg font-bold text-black ">
-            Toatal product
+         
           </div>
+          <img src="/jumia 1.jpg" alt="" />
           <div className="h-56 w-10 bg-gray-200 px-40 py-12 shadow rounded-lg font-bold text-black">
             Successful
           </div>

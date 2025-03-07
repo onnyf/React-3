@@ -42,7 +42,11 @@ const Navbar = () => {
             {dropdownOpen && <CartDrop closeDropDown={closeDropDown} />}
           </div>
 
-          <button className="">User</button>
+          <div className="flex gap-4 ">
+          <Link to={"/login"} className="flex rounded-4xl border h-10 w-20 items-center justify-center bg-blue-400 ">Logn In</Link>
+
+           <Link to={"/sign-up"} className="flex rounded-4xl border h-10 w-20 items-center justify-center bg-blue-400 ">Sign Up</Link>
+          </div>
         </div>
       </div>
     </>
